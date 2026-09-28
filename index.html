@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DisasTrack GPS</title>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+
+    <div class="brand">
+
+        <div class="logo">
+            D
+        </div>
+
+        <div>
+            <h1>DisasTrack</h1>
+            <p>Real-Time GPS Tracking</p>
+        </div>
+
+    </div>
+
+    <div class="status">
+
+        <span id="statusDot"></span>
+
+        <span id="statusText">
+            Connecting...
+        </span>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <!-- MAP -->
+
+    <section class="map-card">
+
+        <div id="map"></div>
+
+        <div class="map-info">
+
+            <div>
+
+                <small>TRACKER</small>
+
+                <strong>
+                    ESP32 + NEO-6M
+                </strong>
+
+            </div>
+
+            <div id="gpsStatus">
+                WAITING
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- GPS DATA -->
+
+    <section class="data-grid">
+
+        <div class="card">
+
+            <span>LATITUDE</span>
+
+            <strong id="latitude">
+                --
+            </strong>
+
+        </div>
+
+
+        <div class="card">
+
+            <span>LONGITUDE</span>
+
+            <strong id="longitude">
+                --
+            </strong>
+
+        </div>
+
+
+        <div class="card">
+
+            <span>SATELLITES</span>
+
+            <strong id="satellites">
+                --
+            </strong>
+
+            <small>GPS</small>
+
+        </div>
+
+
+        <div class="card">
+
+            <span>SPEED</span>
+
+            <strong id="speed">
+                --
+            </strong>
+
+            <small>km/h</small>
+
+        </div>
+
+
+        <div class="card">
+
+            <span>ALTITUDE</span>
+
+            <strong id="altitude">
+                --
+            </strong>
+
+            <small>m</small>
+
+        </div>
+
+
+        <div class="card">
+
+            <span>COURSE</span>
+
+            <strong id="course">
+                --
+            </strong>
+
+            <small>deg</small>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONNECTION -->
+
+    <section class="connection">
+
+        <div>
+
+            <span>BROKER</span>
+
+            <strong>
+                HiveMQ Cloud
+            </strong>
+
+        </div>
+
+
+        <div>
+
+            <span>TOPIC</span>
+
+            <strong>
+                trackerdisastrack/gps
+            </strong>
+
+        </div>
+
+
+        <div>
+
+            <span>LAST UPDATE</span>
+
+            <strong id="lastUpdate">
+                --
+            </strong>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    DisasTrack • ESP32 + NEO-6M + MQTT
+
+</footer>
+
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>

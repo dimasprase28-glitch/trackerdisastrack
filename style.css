@@ -1,0 +1,418 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    background: #f3f6f4;
+
+    color: #27332d;
+}
+
+
+/* HEADER */
+
+header {
+
+    height: 76px;
+
+    padding: 0 32px;
+
+    background: white;
+
+    border-bottom:
+        1px solid #e2e8e4;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.logo {
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 13px;
+
+    background: #344a3f;
+
+    color: white;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 20px;
+
+    font-weight: bold;
+}
+
+
+.brand h1 {
+
+    margin: 0;
+
+    font-size: 20px;
+}
+
+
+.brand p {
+
+    margin: 3px 0 0;
+
+    color: #89948e;
+
+    font-size: 12px;
+}
+
+
+/* STATUS */
+
+.status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    font-size: 13px;
+
+    color: #7c8781;
+}
+
+
+#statusDot {
+
+    width: 9px;
+
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #b8c0bb;
+}
+
+
+#statusDot.connected {
+
+    background: #69a477;
+
+    box-shadow:
+        0 0 0 5px
+        rgba(105,164,119,.12);
+}
+
+
+/* MAIN */
+
+main {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 24px;
+}
+
+
+/* MAP */
+
+.map-card {
+
+    position: relative;
+
+    background: white;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin-bottom: 18px;
+
+    box-shadow:
+        0 5px 25px
+        rgba(30,50,40,.06);
+}
+
+
+#map {
+
+    width: 100%;
+
+    height: 520px;
+}
+
+
+.map-info {
+
+    position: absolute;
+
+    left: 18px;
+
+    right: 18px;
+
+    bottom: 18px;
+
+    z-index: 500;
+
+    padding: 14px 18px;
+
+    background:
+        rgba(255,255,255,.94);
+
+    backdrop-filter:
+        blur(10px);
+
+    border-radius: 14px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+
+.map-info small {
+
+    display: block;
+
+    color: #8d9791;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+
+.map-info strong {
+
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 14px;
+}
+
+
+#gpsStatus {
+
+    color: #669375;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+
+/* DATA */
+
+.data-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 14px;
+
+    margin-bottom: 14px;
+}
+
+
+.card {
+
+    background: white;
+
+    border-radius: 16px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 4px 18px
+        rgba(30,50,40,.04);
+}
+
+
+.card span {
+
+    display: block;
+
+    color: #929b96;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 9px;
+}
+
+
+.card strong {
+
+    font-size: 22px;
+
+    font-weight: 600;
+
+    word-break: break-all;
+}
+
+
+.card small {
+
+    margin-left: 4px;
+
+    color: #929b96;
+
+    font-size: 11px;
+}
+
+
+/* CONNECTION */
+
+.connection {
+
+    background: white;
+
+    border-radius: 16px;
+
+    padding: 18px 20px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+
+.connection span {
+
+    display: block;
+
+    color: #929b96;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+
+.connection strong {
+
+    display: block;
+
+    margin-top: 6px;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    word-break: break-all;
+}
+
+
+/* FOOTER */
+
+footer {
+
+    text-align: center;
+
+    padding: 25px;
+
+    color: #929b96;
+
+    font-size: 11px;
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width: 800px) {
+
+    header {
+
+        padding: 0 18px;
+    }
+
+
+    main {
+
+        padding: 14px;
+    }
+
+
+    .data-grid {
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+
+    .connection {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    #map {
+
+        height: 430px;
+    }
+
+}
+
+
+@media(max-width: 500px) {
+
+    .brand p {
+
+        display: none;
+    }
+
+
+    .card {
+
+        padding: 16px;
+    }
+
+
+    .card strong {
+
+        font-size: 18px;
+    }
+
+
+    #map {
+
+        height: 400px;
+    }
+
+}
