@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>DisasTrack Command Center</title>
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="brand">
+
+        <div class="logo">
+            D
+        </div>
+
+        <div>
+
+            <h1>DisasTrack</h1>
+
+            <p>
+                Disaster Tracking & Evacuation System
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="mqtt-status">
+
+        <span id="statusDot"></span>
+
+        <span id="statusText">
+            Connecting...
+        </span>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <!-- ================================================= -->
+    <!-- MAPS -->
+    <!-- ================================================= -->
+
+    <section class="maps">
+
+        <div class="map-card">
+
+            <div class="map-header">
+
+                <div>
+
+                    <span class="label">
+                        TRACKER
+                    </span>
+
+                    <h2>
+                        Tracker Location
+                    </h2>
+
+                </div>
+
+                <span
+                    id="trackerSignal"
+                    class="badge gray"
+                >
+                    NONE
+                </span>
+
+            </div>
+
+            <div id="trackerMap"></div>
+
+        </div>
+
+
+        <div class="map-card">
+
+            <div class="map-header">
+
+                <div>
+
+                    <span class="label">
+                        STATION
+                    </span>
+
+                    <h2>
+                        Station Location
+                    </h2>
+
+                </div>
+
+                <span
+                    id="stationStatus"
+                    class="badge gray"
+                >
+                    OFFLINE
+                </span>
+
+            </div>
+
+            <div id="stationMap"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- TRACKER DATA -->
+    <!-- ================================================= -->
+
+    <section class="section-title">
+
+        <h2>
+            Tracker Information
+        </h2>
+
+    </section>
+
+
+    <section class="data-grid">
+
+        <div class="data-card">
+
+            <span>
+                TRACKER
+            </span>
+
+            <strong id="trackerID">
+                --
+            </strong>
+
+        </div>
+
+
+        <div class="data-card">
+
+            <span>
+                LATITUDE
+            </span>
+
+            <strong id="trackerLat">
+                --
+            </strong>
+
+        </div>
+
+
+        <div class="data-card">
+
+            <span>
+                LONGITUDE
+            </span>
+
+            <strong id="trackerLon">
+                --
+            </strong>
+
+        </div>
+
+
+        <div class="data-card">
+
+            <span>
+                SATELLITES
+            </span>
+
+            <strong id="trackerSat">
+                --
+            </strong>
+
+        </div>
+
+
+        <div class="data-card">
+
+            <span>
+                ALTITUDE
+            </span>
+
+            <strong id="trackerAlt">
+                --
+            </strong>
+
+            <small>
+                meter
+            </small>
+
+        </div>
+
+
+        <div class="data-card">
+
+            <span>
+                UPDATE
+            </span>
+
+            <strong id="trackerUpdate">
+                --
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- VICTIM SUMMARY -->
+    <!-- ================================================= -->
+
+    <section class="section-title">
+
+        <h2>
+            Victim Summary
+        </h2>
+
+    </section>
+
+
+    <section class="summary-grid">
+
+        <div class="summary-card">
+
+            <span>
+                TOTAL VICTIMS
+            </span>
+
+            <strong id="totalVictim">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="summary-card red-card">
+
+            <span>
+                RED
+            </span>
+
+            <strong id="redCount">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="summary-card yellow-card">
+
+            <span>
+                YELLOW
+            </span>
+
+            <strong id="yellowCount">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="summary-card green-card">
+
+            <span>
+                GREEN
+            </span>
+
+            <strong id="greenCount">
+                0
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- VICTIM TABLE -->
+    <!-- ================================================= -->
+
+    <section class="victim-card">
+
+        <div class="table-header">
+
+            <div>
+
+                <span class="label">
+                    EVACUATION
+                </span>
+
+                <h2>
+                    Victim Records
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            ID
+                        </th>
+
+                        <th>
+                            TRACKER
+                        </th>
+
+                        <th>
+                            SIGNAL
+                        </th>
+
+                        <th>
+                            TYPE
+                        </th>
+
+                        <th>
+                            STATUS
+                        </th>
+
+                        <th>
+                            LOCATION
+                        </th>
+
+                        <th>
+                            UPDATE
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="victimTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- CONNECTION -->
+    <!-- ================================================= -->
+
+    <section class="connection">
+
+        <div>
+
+            <span>
+                BROKER
+            </span>
+
+            <strong>
+                HiveMQ Cloud
+            </strong>
+
+        </div>
+
+
+        <div>
+
+            <span>
+                TRACKER TOPIC
+            </span>
+
+            <strong>
+                trackerdisastrack/tracker
+            </strong>
+
+        </div>
+
+
+        <div>
+
+            <span>
+                STATION TOPIC
+            </span>
+
+            <strong>
+                trackerdisastrack/station
+            </strong>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    DisasTrack • ESP32 • ESP-NOW • GPS • MQTT
+
+</footer>
+
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+
+<script
+    src="https://unpkg.com/mqtt/dist/mqtt.min.js">
+</script>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
